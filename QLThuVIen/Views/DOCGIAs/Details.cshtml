@@ -1,0 +1,98 @@
+﻿@model QLThuVIen.Models.DOCGIA
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DOCGIA</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HOTENDOCGIA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HOTENDOCGIA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MATKHAU)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MATKHAU)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SDT)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SDT)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DIACHI)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DIACHI)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAYSINH)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NGAYSINH)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAYLAPTHE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NGAYLAPTHE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EMAIL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.GIOITINH)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.GIOITINH)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ROLE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ROLE)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_DOCGIA }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

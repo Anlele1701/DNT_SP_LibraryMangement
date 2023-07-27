@@ -1,0 +1,66 @@
+﻿@model QLThuVIen.Models.PHIEUMUON
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PHIEUMUON</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAYMUON)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NGAYMUON)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.GHICHU)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.GHICHU)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TAILIEU.TENTAILIEU)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TAILIEU.TENTAILIEU)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PHIEUTRA.TINHTRANG)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PHIEUTRA.TINHTRANG)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_MUONSACH }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<QLThuVIen.Models.PHIEUMUON>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: black;
+                transition: 0.5s ease-in-out;
+            }
+
+        button {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .edit {
+            color: green;
+        }
+
+        .detail {
+            color: blue;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+        <h2 style="">QUẢN LÝ PHIẾU MƯỢN</h2>
+        <p>
+            <button> @Html.ActionLink("Thêm phiếu mượn mới", "Create")</button>
+        </p>
+        <table class="table table-bordered table-sm" style="border-width:thick">
+            <thead class="thead-dark" style="background:black;color:snow;">
+                <tr style="text-align:center;">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NGAYMUON)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GHICHU)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOCGIA.HOTENDOCGIA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TAILIEU.TENTAILIEU)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PHIEUTRA.TINHTRANG)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NGAYMUON)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GHICHU)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOCGIA.HOTENDOCGIA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TAILIEU.TENTAILIEU)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PHIEUTRA.TINHTRANG)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID_MUONSACH }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID_MUONSACH }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID_MUONSACH })
+                        </td>
+                    </tr>
+                }
+        </table>
+        </div>
+</body>
+</html>

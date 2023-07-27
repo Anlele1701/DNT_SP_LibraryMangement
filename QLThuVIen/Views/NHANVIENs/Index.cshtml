@@ -1,0 +1,106 @@
+﻿@model IEnumerable<QLThuVIen.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: black;
+            transition: 0.5s ease-in-out;
+        }
+
+    button {
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .edit {
+        color: green;
+    }
+
+    .detail {
+        color: blue;
+    }
+
+    .delete {
+        color: red;
+    }
+</style>
+<div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+
+    <h2 style="">QUẢN LÝ NHÂN VIÊN</h2>
+
+    <p>
+        <button> @Html.ActionLink("Thêm nhân viên mới", "Create")</button>
+    </p>
+    <p>
+        <button>@Html.ActionLink("Xuất excel", "ExportToExcel")</button>
+    </p>
+    <table class="table table-bordered table-sm" style="border-width:thick">
+        <thead class="thead-dark" style="background:black;color:snow;">
+            <tr style="text-align:center;">
+                <th>
+                    Mã nhân viên
+                </th>
+                <th>
+                    Họ tên nhân viên
+                </th>
+                <th>
+                    Số điện thoại nhân viên
+                </th>
+                <th>
+                    Ngày sinh nhân viên
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Chức vụ
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_NHANVIEN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOTENNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYSINH)
+                    </td>
+                    <td>
+                       @Html.DisplayFor(modelItem => item.GIOITINH) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ROLE)
+                    </td>
+                    <td>
+                        <button>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID_NHANVIEN }, new { @class = "edit" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID_NHANVIEN }, new { @class = "detail" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID_NHANVIEN }, new { @class = "delete" })
+                        </button>
+                    </td>
+                </tr>
+            }
+
+    </table>
+    </div>

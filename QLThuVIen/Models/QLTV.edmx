@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DOCGIA">
+          <Key>
+            <PropertyRef Name="ID_DOCGIA" />
+          </Key>
+          <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HOTENDOCGIA" Type="nvarchar" MaxLength="50" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
+          <Property Name="SDT" Type="char" MaxLength="10" />
+          <Property Name="DIACHI" Type="varchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="NGAYLAPTHE" Type="date" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="GIOITINH" Type="char" MaxLength="1" />
+          <Property Name="ROLE" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="ID_NHANVIEN" />
+          </Key>
+          <Property Name="ID_NHANVIEN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HOTENNV" Type="nvarchar" MaxLength="50" />
+          <Property Name="MATKHAU" Type="varchar" MaxLength="50" />
+          <Property Name="SDT" Type="char" MaxLength="10" />
+          <Property Name="DIACHI" Type="varchar" MaxLength="50" />
+          <Property Name="NGAYSINH" Type="date" />
+          <Property Name="HINHANH" Type="varchar(max)" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="GIOITINH" Type="char" MaxLength="1" />
+          <Property Name="ROLE" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="NHAXB">
+          <Key>
+            <PropertyRef Name="IDNHAXB" />
+          </Key>
+          <Property Name="IDNHAXB" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENNHAXB" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PHIEUHANHKIEM">
+          <Key>
+            <PropertyRef Name="ID_HK" />
+          </Key>
+          <Property Name="ID_HK" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAY" Type="date" />
+          <Property Name="DIEM" Type="tinyint" />
+          <Property Name="LOIVIPHAM" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PHIEUMUON">
+          <Key>
+            <PropertyRef Name="ID_MUONSACH" />
+          </Key>
+          <Property Name="ID_MUONSACH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAYMUON" Type="date" />
+          <Property Name="GHICHU" Type="varchar" MaxLength="75" />
+          <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
+          <Property Name="ID_TRASACH" Type="varchar" MaxLength="10" />
+          <Property Name="ID_TAILIEU" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PHIEUPHAT">
+          <Key>
+            <PropertyRef Name="IDPP" />
+          </Key>
+          <Property Name="IDPP" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PHIPHAT" Type="int" />
+          <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="NDVIPHAM" Type="nvarchar" MaxLength="75" />
+          <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PHIEUTRA">
+          <Key>
+            <PropertyRef Name="ID_TRASACH" />
+          </Key>
+          <Property Name="ID_TRASACH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NGAYTRA" Type="date" />
+          <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="NDVIPHAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TAILIEU">
+          <Key>
+            <PropertyRef Name="ID_TAILIEU" />
+          </Key>
+          <Property Name="ID_TAILIEU" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENTAILIEU" Type="nvarchar" MaxLength="50" />
+          <Property Name="TACGIA" Type="nvarchar" MaxLength="50" />
+          <Property Name="HINHANH" Type="varchar(max)" />
+          <Property Name="SOLUONG" Type="int" />
+          <Property Name="SOTRANG" Type="int" />
+          <Property Name="IDTL" Type="varchar" MaxLength="10" />
+          <Property Name="IDNHAXB" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="IDTL" />
+          </Key>
+          <Property Name="IDTL" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENTL" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__PHIEUHANH__ID_DO__5FB337D6">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUHANHKIEM" Type="Self.PHIEUHANHKIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUHANHKIEM">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_DO__5812160E">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_TA__59FA5E80">
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAILIEU">
+              <PropertyRef Name="ID_TAILIEU" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_TAILIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_TR__59063A47">
+          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUTRA">
+              <PropertyRef Name="ID_TRASACH" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_TRASACH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUPHAT" Type="Self.PHIEUPHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUPHAT">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUTRA__ID_DOC__5535A963">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUTRA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAILIEU__IDNHAXB__52593CB8">
+          <End Role="NHAXB" Type="Self.NHAXB" Multiplicity="0..1" />
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAXB">
+              <PropertyRef Name="IDNHAXB" />
+            </Principal>
+            <Dependent Role="TAILIEU">
+              <PropertyRef Name="IDNHAXB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAILIEU__IDTL__5165187F">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="IDTL" />
+            </Principal>
+            <Dependent Role="TAILIEU">
+              <PropertyRef Name="IDTL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTVModelStoreContainer">
+          <EntitySet Name="DOCGIA" EntityType="Self.DOCGIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAXB" EntityType="Self.NHAXB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUHANHKIEM" EntityType="Self.PHIEUHANHKIEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUMUON" EntityType="Self.PHIEUMUON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUPHAT" EntityType="Self.PHIEUPHAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUTRA" EntityType="Self.PHIEUTRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAILIEU" EntityType="Self.TAILIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THELOAI" EntityType="Self.THELOAI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PHIEUHANH__ID_DO__5FB337D6" Association="Self.FK__PHIEUHANH__ID_DO__5FB337D6">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="PHIEUHANHKIEM" EntitySet="PHIEUHANHKIEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_DO__5812160E" Association="Self.FK__PHIEUMUON__ID_DO__5812160E">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_TA__59FA5E80" Association="Self.FK__PHIEUMUON__ID_TA__59FA5E80">
+            <End Role="TAILIEU" EntitySet="TAILIEU" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_TR__59063A47" Association="Self.FK__PHIEUMUON__ID_TR__59063A47">
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B" Association="Self.FK__PHIEUPHAT__ID_DO__5CD6CB2B">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="PHIEUPHAT" EntitySet="PHIEUPHAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUTRA__ID_DOC__5535A963" Association="Self.FK__PHIEUTRA__ID_DOC__5535A963">
+            <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAILIEU__IDNHAXB__52593CB8" Association="Self.FK__TAILIEU__IDNHAXB__52593CB8">
+            <End Role="NHAXB" EntitySet="NHAXB" />
+            <End Role="TAILIEU" EntitySet="TAILIEU" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAILIEU__IDTL__5165187F" Association="Self.FK__TAILIEU__IDTL__5165187F">
+            <End Role="THELOAI" EntitySet="THELOAI" />
+            <End Role="TAILIEU" EntitySet="TAILIEU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DOCGIA">
+          <Key>
+            <PropertyRef Name="ID_DOCGIA" />
+          </Key>
+          <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HOTENDOCGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="NGAYLAPTHE" Type="DateTime" Precision="0" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GIOITINH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ROLE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PHIEUHANHKIEMs" Relationship="Self.FK__PHIEUHANH__ID_DO__5FB337D6" FromRole="DOCGIA" ToRole="PHIEUHANHKIEM" />
+          <NavigationProperty Name="PHIEUMUONs" Relationship="Self.FK__PHIEUMUON__ID_DO__5812160E" FromRole="DOCGIA" ToRole="PHIEUMUON" />
+          <NavigationProperty Name="PHIEUPHATs" Relationship="Self.FK__PHIEUPHAT__ID_DO__5CD6CB2B" FromRole="DOCGIA" ToRole="PHIEUPHAT" />
+          <NavigationProperty Name="PHIEUTRAs" Relationship="Self.FK__PHIEUTRA__ID_DOC__5535A963" FromRole="DOCGIA" ToRole="PHIEUTRA" />
+        </EntityType>
+        <EntityType Name="NHANVIEN">
+          <Key>
+            <PropertyRef Name="ID_NHANVIEN" />
+          </Key>
+          <Property Name="ID_NHANVIEN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HOTENNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+          <Property Name="HINHANH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GIOITINH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ROLE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NHAXB">
+          <Key>
+            <PropertyRef Name="IDNHAXB" />
+          </Key>
+          <Property Name="IDNHAXB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENNHAXB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TAILIEUx" Relationship="Self.FK__TAILIEU__IDNHAXB__52593CB8" FromRole="NHAXB" ToRole="TAILIEU" />
+        </EntityType>
+        <EntityType Name="PHIEUHANHKIEM">
+          <Key>
+            <PropertyRef Name="ID_HK" />
+          </Key>
+          <Property Name="ID_HK" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NGAY" Type="DateTime" Precision="0" />
+          <Property Name="DIEM" Type="Byte" />
+          <Property Name="LOIVIPHAM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUHANH__ID_DO__5FB337D6" FromRole="PHIEUHANHKIEM" ToRole="DOCGIA" />
+        </EntityType>
+        <EntityType Name="PHIEUMUON">
+          <Key>
+            <PropertyRef Name="ID_MUONSACH" />
+          </Key>
+          <Property Name="ID_MUONSACH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NGAYMUON" Type="DateTime" Precision="0" />
+          <Property Name="GHICHU" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TRASACH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TAILIEU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUMUON__ID_DO__5812160E" FromRole="PHIEUMUON" ToRole="DOCGIA" />
+          <NavigationProperty Name="TAILIEU" Relationship="Self.FK__PHIEUMUON__ID_TA__59FA5E80" FromRole="PHIEUMUON" ToRole="TAILIEU" />
+          <NavigationProperty Name="PHIEUTRA" Relationship="Self.FK__PHIEUMUON__ID_TR__59063A47" FromRole="PHIEUMUON" ToRole="PHIEUTRA" />
+        </EntityType>
+        <EntityType Name="PHIEUPHAT">
+          <Key>
+            <PropertyRef Name="IDPP" />
+          </Key>
+          <Property Name="IDPP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PHIPHAT" Type="Int32" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NDVIPHAM" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUPHAT__ID_DO__5CD6CB2B" FromRole="PHIEUPHAT" ToRole="DOCGIA" />
+        </EntityType>
+        <EntityType Name="PHIEUTRA">
+          <Key>
+            <PropertyRef Name="ID_TRASACH" />
+          </Key>
+          <Property Name="ID_TRASACH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NGAYTRA" Type="DateTime" Precision="0" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NDVIPHAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUTRA__ID_DOC__5535A963" FromRole="PHIEUTRA" ToRole="DOCGIA" />
+          <NavigationProperty Name="PHIEUMUONs" Relationship="Self.FK__PHIEUMUON__ID_TR__59063A47" FromRole="PHIEUTRA" ToRole="PHIEUMUON" />
+        </EntityType>
+        <EntityType Name="TAILIEU">
+          <Key>
+            <PropertyRef Name="ID_TAILIEU" />
+          </Key>
+          <Property Name="ID_TAILIEU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENTAILIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TACGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HINHANH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="SOTRANG" Type="Int32" />
+          <Property Name="IDTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDNHAXB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHAXB" Relationship="Self.FK__TAILIEU__IDNHAXB__52593CB8" FromRole="TAILIEU" ToRole="NHAXB" />
+          <NavigationProperty Name="PHIEUMUONs" Relationship="Self.FK__PHIEUMUON__ID_TA__59FA5E80" FromRole="TAILIEU" ToRole="PHIEUMUON" />
+          <NavigationProperty Name="THELOAI" Relationship="Self.FK__TAILIEU__IDTL__5165187F" FromRole="TAILIEU" ToRole="THELOAI" />
+        </EntityType>
+        <EntityType Name="THELOAI">
+          <Key>
+            <PropertyRef Name="IDTL" />
+          </Key>
+          <Property Name="IDTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TENTL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TAILIEUx" Relationship="Self.FK__TAILIEU__IDTL__5165187F" FromRole="THELOAI" ToRole="TAILIEU" />
+        </EntityType>
+        <Association Name="FK__PHIEUHANH__ID_DO__5FB337D6">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUHANHKIEM" Type="Self.PHIEUHANHKIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUHANHKIEM">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_DO__5812160E">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUPHAT" Type="Self.PHIEUPHAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUPHAT">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUTRA__ID_DOC__5535A963">
+          <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
+          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCGIA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Principal>
+            <Dependent Role="PHIEUTRA">
+              <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAILIEU__IDNHAXB__52593CB8">
+          <End Role="NHAXB" Type="Self.NHAXB" Multiplicity="0..1" />
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAXB">
+              <PropertyRef Name="IDNHAXB" />
+            </Principal>
+            <Dependent Role="TAILIEU">
+              <PropertyRef Name="IDNHAXB" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_TA__59FA5E80">
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAILIEU">
+              <PropertyRef Name="ID_TAILIEU" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_TAILIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUMUON__ID_TR__59063A47">
+          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="0..1" />
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUTRA">
+              <PropertyRef Name="ID_TRASACH" />
+            </Principal>
+            <Dependent Role="PHIEUMUON">
+              <PropertyRef Name="ID_TRASACH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TAILIEU__IDTL__5165187F">
+          <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+          <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THELOAI">
+              <PropertyRef Name="IDTL" />
+            </Principal>
+            <Dependent Role="TAILIEU">
+              <PropertyRef Name="IDTL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DOCGIAs" EntityType="Self.DOCGIA" />
+          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="NHAXBs" EntityType="Self.NHAXB" />
+          <EntitySet Name="PHIEUHANHKIEMs" EntityType="Self.PHIEUHANHKIEM" />
+          <EntitySet Name="PHIEUMUONs" EntityType="Self.PHIEUMUON" />
+          <EntitySet Name="PHIEUPHATs" EntityType="Self.PHIEUPHAT" />
+          <EntitySet Name="PHIEUTRAs" EntityType="Self.PHIEUTRA" />
+          <EntitySet Name="TAILIEUx" EntityType="Self.TAILIEU" />
+          <EntitySet Name="THELOAIs" EntityType="Self.THELOAI" />
+          <AssociationSet Name="FK__PHIEUHANH__ID_DO__5FB337D6" Association="Self.FK__PHIEUHANH__ID_DO__5FB337D6">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="PHIEUHANHKIEM" EntitySet="PHIEUHANHKIEMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_DO__5812160E" Association="Self.FK__PHIEUMUON__ID_DO__5812160E">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B" Association="Self.FK__PHIEUPHAT__ID_DO__5CD6CB2B">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="PHIEUPHAT" EntitySet="PHIEUPHATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUTRA__ID_DOC__5535A963" Association="Self.FK__PHIEUTRA__ID_DOC__5535A963">
+            <End Role="DOCGIA" EntitySet="DOCGIAs" />
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAILIEU__IDNHAXB__52593CB8" Association="Self.FK__TAILIEU__IDNHAXB__52593CB8">
+            <End Role="NHAXB" EntitySet="NHAXBs" />
+            <End Role="TAILIEU" EntitySet="TAILIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_TA__59FA5E80" Association="Self.FK__PHIEUMUON__ID_TA__59FA5E80">
+            <End Role="TAILIEU" EntitySet="TAILIEUx" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUMUON__ID_TR__59063A47" Association="Self.FK__PHIEUMUON__ID_TR__59063A47">
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRAs" />
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TAILIEU__IDTL__5165187F" Association="Self.FK__TAILIEU__IDTL__5165187F">
+            <End Role="THELOAI" EntitySet="THELOAIs" />
+            <End Role="TAILIEU" EntitySet="TAILIEUx" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLTVModelStoreContainer" CdmEntityContainer="QLTVEntities">
+          <EntitySetMapping Name="DOCGIAs">
+            <EntityTypeMapping TypeName="QLTVModel.DOCGIA">
+              <MappingFragment StoreEntitySet="DOCGIA">
+                <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
+                <ScalarProperty Name="HOTENDOCGIA" ColumnName="HOTENDOCGIA" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="NGAYLAPTHE" ColumnName="NGAYLAPTHE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHANVIENs">
+            <EntityTypeMapping TypeName="QLTVModel.NHANVIEN">
+              <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="ID_NHANVIEN" ColumnName="ID_NHANVIEN" />
+                <ScalarProperty Name="HOTENNV" ColumnName="HOTENNV" />
+                <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGAYSINH" ColumnName="NGAYSINH" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAXBs">
+            <EntityTypeMapping TypeName="QLTVModel.NHAXB">
+              <MappingFragment StoreEntitySet="NHAXB">
+                <ScalarProperty Name="IDNHAXB" ColumnName="IDNHAXB" />
+                <ScalarProperty Name="TENNHAXB" ColumnName="TENNHAXB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUHANHKIEMs">
+            <EntityTypeMapping TypeName="QLTVModel.PHIEUHANHKIEM">
+              <MappingFragment StoreEntitySet="PHIEUHANHKIEM">
+                <ScalarProperty Name="ID_HK" ColumnName="ID_HK" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="DIEM" ColumnName="DIEM" />
+                <ScalarProperty Name="LOIVIPHAM" ColumnName="LOIVIPHAM" />
+                <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUMUONs">
+            <EntityTypeMapping TypeName="QLTVModel.PHIEUMUON">
+              <MappingFragment StoreEntitySet="PHIEUMUON">
+                <ScalarProperty Name="ID_MUONSACH" ColumnName="ID_MUONSACH" />
+                <ScalarProperty Name="NGAYMUON" ColumnName="NGAYMUON" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
+                <ScalarProperty Name="ID_TRASACH" ColumnName="ID_TRASACH" />
+                <ScalarProperty Name="ID_TAILIEU" ColumnName="ID_TAILIEU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUPHATs">
+            <EntityTypeMapping TypeName="QLTVModel.PHIEUPHAT">
+              <MappingFragment StoreEntitySet="PHIEUPHAT">
+                <ScalarProperty Name="IDPP" ColumnName="IDPP" />
+                <ScalarProperty Name="PHIPHAT" ColumnName="PHIPHAT" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="NDVIPHAM" ColumnName="NDVIPHAM" />
+                <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUTRAs">
+            <EntityTypeMapping TypeName="QLTVModel.PHIEUTRA">
+              <MappingFragment StoreEntitySet="PHIEUTRA">
+                <ScalarProperty Name="ID_TRASACH" ColumnName="ID_TRASACH" />
+                <ScalarProperty Name="NGAYTRA" ColumnName="NGAYTRA" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="NDVIPHAM" ColumnName="NDVIPHAM" />
+                <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAILIEUx">
+            <EntityTypeMapping TypeName="QLTVModel.TAILIEU">
+              <MappingFragment StoreEntitySet="TAILIEU">
+                <ScalarProperty Name="ID_TAILIEU" ColumnName="ID_TAILIEU" />
+                <ScalarProperty Name="TENTAILIEU" ColumnName="TENTAILIEU" />
+                <ScalarProperty Name="TACGIA" ColumnName="TACGIA" />
+                <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="SOTRANG" ColumnName="SOTRANG" />
+                <ScalarProperty Name="IDTL" ColumnName="IDTL" />
+                <ScalarProperty Name="IDNHAXB" ColumnName="IDNHAXB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THELOAIs">
+            <EntityTypeMapping TypeName="QLTVModel.THELOAI">
+              <MappingFragment StoreEntitySet="THELOAI">
+                <ScalarProperty Name="IDTL" ColumnName="IDTL" />
+                <ScalarProperty Name="TENTL" ColumnName="TENTL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

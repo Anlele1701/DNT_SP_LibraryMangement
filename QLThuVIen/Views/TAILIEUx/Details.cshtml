@@ -1,0 +1,82 @@
+﻿@model QLThuVIen.Models.TAILIEU
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TAILIEU</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TENTAILIEU)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TENTAILIEU)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TACGIA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TACGIA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HINHANH)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HINHANH)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SOLUONG)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SOLUONG)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SOTRANG)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SOTRANG)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NHAXB.TENNHAXB)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NHAXB.TENNHAXB)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.THELOAI.TENTL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.THELOAI.TENTL)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_TAILIEU }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

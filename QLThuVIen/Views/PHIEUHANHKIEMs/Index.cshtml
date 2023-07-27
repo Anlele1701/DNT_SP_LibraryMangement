@@ -1,0 +1,97 @@
+﻿@model IEnumerable<QLThuVIen.Models.PHIEUHANHKIEM>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: black;
+                transition: 0.5s ease-in-out;
+            }
+
+        button {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .edit {
+            color: green;
+        }
+
+        .detail {
+            color: blue;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
+</head>
+<div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+
+    <h2 style="">QUẢN LÝ PHIẾU HẠNH KIỂM</h2>
+
+    <p>
+        <button> @Html.ActionLink("Thêm phiếu hạnh kiểm", "Create")</button>
+    </p>
+    <table class="table table-bordered table-sm" style="border-width:thick">
+        <thead class="thead-dark" style="background:black;color:snow;">
+            <tr style="text-align:center;">
+                <th>
+                    Ngày
+                </th>
+                <th>
+                    ID Độc giả
+                </th>
+                <th>
+                   Họ và tên độc giả
+                </th>
+                <th>
+                    Lỗi vi phạm
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAY)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DOCGIA.ID_DOCGIA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DOCGIA.HOTENDOCGIA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LOIVIPHAM)
+                    </td>
+S                    <td>
+                        <button>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID_HK }, new { @class = "edit" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID_HK }, new { @class = "detail" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID_HK }, new { @class = "delete" })
+                        </button>
+                    </td>
+                </tr>
+            }
+
+    </table>
+    </div>
+</html>

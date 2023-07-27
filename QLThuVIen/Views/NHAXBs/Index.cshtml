@@ -1,0 +1,82 @@
+﻿@model IEnumerable<QLThuVIen.Models.NHAXB>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: black;
+            transition: 0.5s ease-in-out;
+        }
+
+    button {
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .edit {
+        color: green;
+    }
+
+    .detail {
+        color: blue;
+    }
+
+    .delete {
+        color: red;
+    }
+</style>
+<div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+
+    <h2 style="">QUẢN LÝ NHÀ XUẤT BẢN</h2>
+
+    <p>
+        <button> @Html.ActionLink("Thêm nhà xuất bản mới", "Create")</button>
+    </p>
+    <table class="table table-bordered table-sm" style="border-width:thick">
+        <thead class="thead-dark" style="background:black;color:snow;">
+            <tr style="text-align:center;">
+                <th>ID nhà xuất bản</th>
+                <th>
+                   Tên nhà xuất bản
+                </th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDNHAXB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENNHAXB)
+                    </td>
+                    <td>
+                        <button>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.IDNHAXB }, new { @class = "edit" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Details", "Details", new { id = item.IDNHAXB }, new { @class = "detail" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.IDNHAXB }, new { @class = "delete" })
+                        </button>
+                    </td>
+                </tr>
+            }
+
+    </table>
+</div>
+</html>

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<QLThuVIen.Models.DOCGIA>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: black;
+                transition: 0.5s ease-in-out;
+            }
+
+        button {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .edit {
+            color: green;
+        }
+
+        .detail {
+            color: blue;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
+</head>
+<div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+    <h2 style="">QUẢN LÝ ĐỘC GIẢ</h2>
+    <p>
+        <button> @Html.ActionLink("Thêm độc giả mới", "Create")</button>
+    </p>
+    <table class="table table-bordered table-sm" style="border-width:thick">
+        <thead class="thead-dark" style="background:black;color:snow;">
+            <tr style="text-align:center;">
+            <tr>
+                <th>
+                    ID Độc giả
+                </th>
+                <th>
+                    Họ và tên độc giả
+                </th>
+                <th>
+                    Số điện thoại độc giả
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Ngày sinh
+                </th>
+                <th>
+                    Hành động
+                </th>
+            </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr style="text-align:center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID_DOCGIA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HOTENDOCGIA)
+                    </td>
+                    <td>
+    @Html.DisplayFor(modelItem => item.SDT)
+</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GIOITINH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYSINH)
+                    </td>
+                    <td>
+                        <button>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID_DOCGIA }, new { @class = "edit" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID_DOCGIA}, new { @class = "detail" })
+                        </button>
+                        <button>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID_DOCGIA }, new { @class = "delete" })
+                        </button>
+                    </td>
+                </tr>
+            }
+
+    </table>
+</div>
+</html>

@@ -1,0 +1,58 @@
+﻿@model QLThuVIen.Models.PHIEUTRA
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PHIEUTRA</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAYTRA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NGAYTRA)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TINHTRANG)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TINHTRANG)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NDVIPHAM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NDVIPHAM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_TRASACH }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

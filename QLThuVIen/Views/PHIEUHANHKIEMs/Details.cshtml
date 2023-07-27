@@ -1,0 +1,58 @@
+﻿@model QLThuVIen.Models.PHIEUHANHKIEM
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PHIEUHANHKIEM</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NGAY)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NGAY)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DIEM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DIEM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LOIVIPHAM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LOIVIPHAM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DOCGIA.HOTENDOCGIA)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_HK }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

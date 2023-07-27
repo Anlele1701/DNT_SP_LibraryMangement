@@ -1,0 +1,90 @@
+﻿@model IEnumerable<QLThuVIen.Models.PHIEUTRA>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+            a:hover {
+                color: black;
+                transition: 0.5s ease-in-out;
+            }
+
+        button {
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .edit {
+            color: green;
+        }
+
+        .detail {
+            color: blue;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div style=" background: #FFFFFF; border-radius:10px; padding:1rem;">
+        <h2 style="">QUẢN LÝ PHIẾU TRẢ</h2>
+        <p>
+            <button> @Html.ActionLink("Thêm phiếu trả mới", "Create")</button>
+        </p>
+        <table class="table table-bordered table-sm" style="border-width:thick">
+            <thead class="thead-dark" style="background:black;color:snow;">
+                <tr style="text-align:center;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.NGAYTRA)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TINHTRANG)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NDVIPHAM)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOCGIA.HOTENDOCGIA)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NGAYTRA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TINHTRANG)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NDVIPHAM)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOCGIA.HOTENDOCGIA)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID_TRASACH }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID_TRASACH }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID_TRASACH })
+                        </td>
+                    </tr>
+                }
+        </table>
+        </div>
+</body>
+</html>
