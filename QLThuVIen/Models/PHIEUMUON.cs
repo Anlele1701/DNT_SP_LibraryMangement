@@ -14,15 +14,21 @@ namespace QLThuVIen.Models
     
     public partial class PHIEUMUON
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PHIEUMUON()
+        {
+            this.PHIEUTRAs = new HashSet<PHIEUTRA>();
+        }
+    
         public string ID_MUONSACH { get; set; }
         public Nullable<System.DateTime> NGAYMUON { get; set; }
         public string GHICHU { get; set; }
         public string ID_DOCGIA { get; set; }
-        public string ID_TRASACH { get; set; }
         public string ID_TAILIEU { get; set; }
     
         public virtual DOCGIA DOCGIA { get; set; }
         public virtual TAILIEU TAILIEU { get; set; }
-        public virtual PHIEUTRA PHIEUTRA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUTRA> PHIEUTRAs { get; set; }
     }
 }

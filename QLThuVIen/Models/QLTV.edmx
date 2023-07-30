@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLTVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DOCGIA">
           <Key>
             <PropertyRef Name="ID_DOCGIA" />
@@ -60,7 +60,6 @@
           <Property Name="NGAYMUON" Type="date" />
           <Property Name="GHICHU" Type="varchar" MaxLength="75" />
           <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
-          <Property Name="ID_TRASACH" Type="varchar" MaxLength="10" />
           <Property Name="ID_TAILIEU" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PHIEUPHAT">
@@ -82,6 +81,7 @@
           <Property Name="TINHTRANG" Type="nvarchar" MaxLength="50" />
           <Property Name="NDVIPHAM" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_DOCGIA" Type="varchar" MaxLength="10" />
+          <Property Name="ID_MUONSACH" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="TAILIEU">
           <Key>
@@ -139,18 +139,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PHIEUMUON__ID_TR__59063A47">
-          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="0..1" />
-          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PHIEUTRA">
-              <PropertyRef Name="ID_TRASACH" />
-            </Principal>
-            <Dependent Role="PHIEUMUON">
-              <PropertyRef Name="ID_TRASACH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B">
           <End Role="DOCGIA" Type="Self.DOCGIA" Multiplicity="0..1" />
           <End Role="PHIEUPHAT" Type="Self.PHIEUPHAT" Multiplicity="*" />
@@ -172,6 +160,18 @@
             </Principal>
             <Dependent Role="PHIEUTRA">
               <PropertyRef Name="ID_DOCGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUTRA__ID_MUO__6E01572D">
+          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="0..1" />
+          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUMUON">
+              <PropertyRef Name="ID_MUONSACH" />
+            </Principal>
+            <Dependent Role="PHIEUTRA">
+              <PropertyRef Name="ID_MUONSACH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -221,16 +221,16 @@
             <End Role="TAILIEU" EntitySet="TAILIEU" />
             <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
           </AssociationSet>
-          <AssociationSet Name="FK__PHIEUMUON__ID_TR__59063A47" Association="Self.FK__PHIEUMUON__ID_TR__59063A47">
-            <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
-            <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
-          </AssociationSet>
           <AssociationSet Name="FK__PHIEUPHAT__ID_DO__5CD6CB2B" Association="Self.FK__PHIEUPHAT__ID_DO__5CD6CB2B">
             <End Role="DOCGIA" EntitySet="DOCGIA" />
             <End Role="PHIEUPHAT" EntitySet="PHIEUPHAT" />
           </AssociationSet>
           <AssociationSet Name="FK__PHIEUTRA__ID_DOC__5535A963" Association="Self.FK__PHIEUTRA__ID_DOC__5535A963">
             <End Role="DOCGIA" EntitySet="DOCGIA" />
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUTRA__ID_MUO__6E01572D" Association="Self.FK__PHIEUTRA__ID_MUO__6E01572D">
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUON" />
             <End Role="PHIEUTRA" EntitySet="PHIEUTRA" />
           </AssociationSet>
           <AssociationSet Name="FK__TAILIEU__IDNHAXB__52593CB8" Association="Self.FK__TAILIEU__IDNHAXB__52593CB8">
@@ -242,8 +242,7 @@
             <End Role="TAILIEU" EntitySet="TAILIEU" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLTVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -308,11 +307,10 @@
           <Property Name="NGAYMUON" Type="DateTime" Precision="0" />
           <Property Name="GHICHU" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ID_TRASACH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ID_TAILIEU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUMUON__ID_DO__5812160E" FromRole="PHIEUMUON" ToRole="DOCGIA" />
           <NavigationProperty Name="TAILIEU" Relationship="Self.FK__PHIEUMUON__ID_TA__59FA5E80" FromRole="PHIEUMUON" ToRole="TAILIEU" />
-          <NavigationProperty Name="PHIEUTRA" Relationship="Self.FK__PHIEUMUON__ID_TR__59063A47" FromRole="PHIEUMUON" ToRole="PHIEUTRA" />
+          <NavigationProperty Name="PHIEUTRAs" Relationship="QLTVModel.FK__PHIEUTRA__ID_MUO__6E01572D" FromRole="PHIEUMUON" ToRole="PHIEUTRA" />
         </EntityType>
         <EntityType Name="PHIEUPHAT">
           <Key>
@@ -335,7 +333,8 @@
           <Property Name="NDVIPHAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_DOCGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DOCGIA" Relationship="Self.FK__PHIEUTRA__ID_DOC__5535A963" FromRole="PHIEUTRA" ToRole="DOCGIA" />
-          <NavigationProperty Name="PHIEUMUONs" Relationship="Self.FK__PHIEUMUON__ID_TR__59063A47" FromRole="PHIEUTRA" ToRole="PHIEUMUON" />
+          <Property Name="ID_MUONSACH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PHIEUMUON" Relationship="QLTVModel.FK__PHIEUTRA__ID_MUO__6E01572D" FromRole="PHIEUTRA" ToRole="PHIEUMUON" />
         </EntityType>
         <EntityType Name="TAILIEU">
           <Key>
@@ -433,18 +432,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PHIEUMUON__ID_TR__59063A47">
-          <End Role="PHIEUTRA" Type="Self.PHIEUTRA" Multiplicity="0..1" />
-          <End Role="PHIEUMUON" Type="Self.PHIEUMUON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PHIEUTRA">
-              <PropertyRef Name="ID_TRASACH" />
-            </Principal>
-            <Dependent Role="PHIEUMUON">
-              <PropertyRef Name="ID_TRASACH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TAILIEU__IDTL__5165187F">
           <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
           <End Role="TAILIEU" Type="Self.TAILIEU" Multiplicity="*" />
@@ -491,15 +478,27 @@
             <End Role="TAILIEU" EntitySet="TAILIEUx" />
             <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
           </AssociationSet>
-          <AssociationSet Name="FK__PHIEUMUON__ID_TR__59063A47" Association="Self.FK__PHIEUMUON__ID_TR__59063A47">
-            <End Role="PHIEUTRA" EntitySet="PHIEUTRAs" />
-            <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
-          </AssociationSet>
           <AssociationSet Name="FK__TAILIEU__IDTL__5165187F" Association="Self.FK__TAILIEU__IDTL__5165187F">
             <End Role="THELOAI" EntitySet="THELOAIs" />
             <End Role="TAILIEU" EntitySet="TAILIEUx" />
           </AssociationSet>
+          <AssociationSet Name="FK__PHIEUTRA__ID_MUO__6E01572D" Association="QLTVModel.FK__PHIEUTRA__ID_MUO__6E01572D">
+            <End Role="PHIEUMUON" EntitySet="PHIEUMUONs" />
+            <End Role="PHIEUTRA" EntitySet="PHIEUTRAs" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__PHIEUTRA__ID_MUO__6E01572D">
+          <End Type="QLTVModel.PHIEUMUON" Role="PHIEUMUON" Multiplicity="0..1" />
+          <End Type="QLTVModel.PHIEUTRA" Role="PHIEUTRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHIEUMUON">
+              <PropertyRef Name="ID_MUONSACH" />
+            </Principal>
+            <Dependent Role="PHIEUTRA">
+              <PropertyRef Name="ID_MUONSACH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -564,7 +563,6 @@
                 <ScalarProperty Name="NGAYMUON" ColumnName="NGAYMUON" />
                 <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
                 <ScalarProperty Name="ID_DOCGIA" ColumnName="ID_DOCGIA" />
-                <ScalarProperty Name="ID_TRASACH" ColumnName="ID_TRASACH" />
                 <ScalarProperty Name="ID_TAILIEU" ColumnName="ID_TAILIEU" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -583,6 +581,7 @@
           <EntitySetMapping Name="PHIEUTRAs">
             <EntityTypeMapping TypeName="QLTVModel.PHIEUTRA">
               <MappingFragment StoreEntitySet="PHIEUTRA">
+                <ScalarProperty Name="ID_MUONSACH" ColumnName="ID_MUONSACH" />
                 <ScalarProperty Name="ID_TRASACH" ColumnName="ID_TRASACH" />
                 <ScalarProperty Name="NGAYTRA" ColumnName="NGAYTRA" />
                 <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />

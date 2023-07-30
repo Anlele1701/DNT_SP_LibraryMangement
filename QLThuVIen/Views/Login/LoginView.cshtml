@@ -1,0 +1,61 @@
+﻿@model QLThuVIen.Models.NHANVIEN
+@{
+    ViewBag.Title = "Login admin";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginView</title>
+    <link rel="stylesheet" href="~/CSS/Login.css" />
+
+</head>
+
+<body style="background-color: #EEEDEC;">
+
+    <div class="card">
+        @using (Html.BeginForm("Authen", "Login", FormMethod.Post))
+        {@Html.AntiForgeryToken()
+
+        <form class="login-form">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16" style="float: right;">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </a>
+            <h1 class="form-heading">
+                <img src="~/Images/logo.png" height="150px" width="150px" style="border-radius:50%">
+            </h1>
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <style>
+                        svg {
+                            fill: #ffffff
+                        }
+                    </style>
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                </svg>
+                @Html.TextBoxFor(m => m.EMAIL , new {@class = "form-input", placeholder = "Tên đăng nhập"})
+            </div>
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <style>
+                        svg {
+                            fill: #ffffff
+                        }
+                    </style>
+                    <path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                </svg>
+                @Html.PasswordFor(m => m.MATKHAU, new {@class ="form-input", placeholder = "Mật khẩu", style = "color:white;height:auto;" } );
+            </div>
+            <input type="submit" value="Đăng Nhập" class="form-submit" style="color:black;">
+        </form>
+    }
+    </div>
+    
+    </body>
+</html>

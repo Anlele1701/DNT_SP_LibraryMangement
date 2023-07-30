@@ -17,7 +17,7 @@ namespace QLThuVIen.Controllers
         // GET: PHIEUMUONs
         public ActionResult Index()
         {
-            var pHIEUMUONs = db.PHIEUMUONs.Include(p => p.DOCGIA).Include(p => p.TAILIEU).Include(p => p.PHIEUTRA);
+            var pHIEUMUONs = db.PHIEUMUONs.Include(p => p.DOCGIA).Include(p => p.TAILIEU);
             return View(pHIEUMUONs.ToList());
         }
 
@@ -61,7 +61,7 @@ namespace QLThuVIen.Controllers
 
             ViewBag.ID_DOCGIA = new SelectList(db.DOCGIAs, "ID_DOCGIA", "HOTENDOCGIA", pHIEUMUON.ID_DOCGIA);
             ViewBag.ID_TAILIEU = new SelectList(db.TAILIEUx, "ID_TAILIEU", "TENTAILIEU", pHIEUMUON.ID_TAILIEU);
-            ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
+            //ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
             return View(pHIEUMUON);
         }
 
@@ -79,7 +79,7 @@ namespace QLThuVIen.Controllers
             }
             ViewBag.ID_DOCGIA = new SelectList(db.DOCGIAs, "ID_DOCGIA", "HOTENDOCGIA", pHIEUMUON.ID_DOCGIA);
             ViewBag.ID_TAILIEU = new SelectList(db.TAILIEUx, "ID_TAILIEU", "TENTAILIEU", pHIEUMUON.ID_TAILIEU);
-            ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
+            //ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
             return View(pHIEUMUON);
         }
 
@@ -98,7 +98,7 @@ namespace QLThuVIen.Controllers
             }
             ViewBag.ID_DOCGIA = new SelectList(db.DOCGIAs, "ID_DOCGIA", "HOTENDOCGIA", pHIEUMUON.ID_DOCGIA);
             ViewBag.ID_TAILIEU = new SelectList(db.TAILIEUx, "ID_TAILIEU", "TENTAILIEU", pHIEUMUON.ID_TAILIEU);
-            ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
+            //ViewBag.ID_TRASACH = new SelectList(db.PHIEUTRAs, "ID_TRASACH", "TINHTRANG", pHIEUMUON.ID_TRASACH);
             return View(pHIEUMUON);
         }
 
